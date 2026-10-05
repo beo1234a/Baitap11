@@ -13,6 +13,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/assets/css/app.css">
+
     <title>
         <sitemesh:write property="title"/>
     </title>
@@ -111,6 +114,11 @@
             </c:when>
 
             <c:otherwise>
+
+                <c:if test="${not sessionScope.account.admin}">
+                    <a href="${pageContext.request.contextPath}/cart">Giỏ hàng (${empty sessionScope.cartCount ? 0 : sessionScope.cartCount})</a>
+                    <a href="${pageContext.request.contextPath}/orders">Lịch sử đặt hàng</a>
+                </c:if>
 
                 <a href="${pageContext.request.contextPath}/logout">
                     Đăng xuất

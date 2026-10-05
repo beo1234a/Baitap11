@@ -98,6 +98,17 @@
 
         </div>
 
+
+        <div class="form-group">
+            <label class="form-label">Giá bán (VNĐ)</label>
+            <input class="form-control" type="number" name="price" min="0" step="1000" value="50000" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Tồn kho</label>
+            <input class="form-control" type="number" name="quantity" min="0" value="20" required>
+        </div>
+
         <div class="form-group">
 
             <label class="form-label">

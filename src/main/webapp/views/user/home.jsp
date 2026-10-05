@@ -4,6 +4,7 @@
 
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -127,6 +128,16 @@
                                         ${video.views}
                                     </div>
 
+                                    <div>
+                                        <strong>Giá:</strong>
+                                        <span class="product-price"><fmt:formatNumber value="${video.price}" type="number" groupingUsed="true"/> đ</span>
+                                    </div>
+
+                                    <div>
+                                        <strong>Tồn kho:</strong>
+                                        ${video.quantity}
+                                    </div>
+
                                 </div>
 
                                 <div class="video-stats">
@@ -141,12 +152,25 @@
 
                                 </div>
 
-                                <a class="btn btn-primary"
-                                   href="${pageContext.request.contextPath}/video/detail?id=${video.videoId}">
+                                <div class="product-actions">
+                                    <a class="btn btn-primary"
+                                       href="${pageContext.request.contextPath}/video/detail?id=${video.videoId}">
+                                        Xem chi tiết
+                                    </a>
 
-                                    Xem chi tiết
-
-                                </a>
+                                    <c:choose>
+                                        <c:when test="${video.quantity > 0}">
+                                            <form method="post" action="${pageContext.request.contextPath}/cart/add">
+                                                <input type="hidden" name="videoId" value="${video.videoId}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button class="btn btn-success" type="submit">+ Giỏ hàng</button>
+                                            </form>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="badge badge-danger">Hết hàng</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
 
                             </div>
 

@@ -2,6 +2,7 @@ package anhtuan.vn.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -178,16 +179,28 @@ public class VideoAdminController_24133072 extends HttpServlet {
                         request.getParameter(
                                 "categoryId"));
 
+        BigDecimal price =
+                parseBigDecimal(
+                        request.getParameter("price"));
+
+        Integer quantity =
+                parseInteger(
+                        request.getParameter("quantity"));
+
         boolean active =
                 request.getParameter("active") != null;
 
         if (title == null
                 || title.trim().isEmpty()
-                || categoryId == null) {
+                || categoryId == null
+                || price == null
+                || price.signum() < 0
+                || quantity == null
+                || quantity < 0) {
 
             request.setAttribute(
                     "error",
-                    "Vui lòng nhập tiêu đề và chọn Category.");
+                    "Vui lòng nhập tiêu đề, Category, giá và tồn kho hợp lệ.");
 
             showAddForm(request, response);
             return;
@@ -235,6 +248,9 @@ public class VideoAdminController_24133072 extends HttpServlet {
         video.setActive(
                 active);
 
+        video.setPrice(price);
+        video.setQuantity(quantity);
+
         video.setCategory(
                 category);
 
@@ -253,6 +269,10 @@ public class VideoAdminController_24133072 extends HttpServlet {
 
         String id =
                 request.getParameter("id");
+
+        if (id == null || id.trim().isEmpty()) {
+            id = request.getParameter("videoId");
+        }
 
         Video_24133072 video =
                 videoService.findById(id);
@@ -316,16 +336,28 @@ public class VideoAdminController_24133072 extends HttpServlet {
                         request.getParameter(
                                 "categoryId"));
 
+        BigDecimal price =
+                parseBigDecimal(
+                        request.getParameter("price"));
+
+        Integer quantity =
+                parseInteger(
+                        request.getParameter("quantity"));
+
         boolean active =
                 request.getParameter("active") != null;
 
         if (title == null
                 || title.trim().isEmpty()
-                || categoryId == null) {
+                || categoryId == null
+                || price == null
+                || price.signum() < 0
+                || quantity == null
+                || quantity < 0) {
 
             request.setAttribute(
                     "error",
-                    "Vui lòng nhập tiêu đề và chọn Category.");
+                    "Vui lòng nhập tiêu đề, Category, giá và tồn kho hợp lệ.");
 
             showEditForm(request, response);
             return;
@@ -371,6 +403,9 @@ public class VideoAdminController_24133072 extends HttpServlet {
 
         video.setActive(
                 active);
+
+        video.setPrice(price);
+        video.setQuantity(quantity);
 
         video.setCategory(
                 category);
@@ -514,6 +549,16 @@ public class VideoAdminController_24133072 extends HttpServlet {
         } catch (Exception e) {
 
             return defaultValue;
+        }
+    }
+
+    private BigDecimal parseBigDecimal(
+            String value) {
+
+        try {
+            return new BigDecimal(value);
+        } catch (Exception e) {
+            return null;
         }
     }
 

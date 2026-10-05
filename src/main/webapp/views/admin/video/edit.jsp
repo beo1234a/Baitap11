@@ -152,6 +152,17 @@
 
         </div>
 
+
+        <div class="form-group">
+            <label class="form-label">Giá bán (VNĐ)</label>
+            <input class="form-control" type="number" name="price" min="0" step="1000" value="${video.price}" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Tồn kho</label>
+            <input class="form-control" type="number" name="quantity" min="0" value="${video.quantity}" required>
+        </div>
+
         <div class="form-group">
 
             <label class="form-label">

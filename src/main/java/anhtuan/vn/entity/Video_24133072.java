@@ -1,6 +1,7 @@
 package anhtuan.vn.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,6 +34,12 @@ public class Video_24133072 implements Serializable {
 
     @Column(name = "Active")
     private Boolean active;
+
+    @Column(name = "Price", precision = 18, scale = 2)
+    private BigDecimal price;
+
+    @Column(name = "Quantity")
+    private Integer quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CategoryId")
@@ -87,6 +94,22 @@ public class Video_24133072 implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Category_24133072 getCategory() {

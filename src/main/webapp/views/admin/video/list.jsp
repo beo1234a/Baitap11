@@ -4,6 +4,7 @@
 
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -65,6 +66,8 @@
                     <th>Tiêu đề</th>
                     <th>Category</th>
                     <th>Views</th>
+                    <th>Giá</th>
+                    <th>Tồn kho</th>
                     <th>Trạng thái</th>
                     <th>Thao tác</th>
                 </tr>
@@ -114,6 +117,14 @@
 
                         <td>
                             ${video.views}
+                        </td>
+
+                        <td>
+                            <fmt:formatNumber value="${video.price}" type="number" groupingUsed="true"/> đ
+                        </td>
+
+                        <td>
+                            ${video.quantity}
                         </td>
 
                         <td>

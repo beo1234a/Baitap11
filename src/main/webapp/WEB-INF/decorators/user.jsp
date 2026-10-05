@@ -96,6 +96,15 @@
 
                 <c:otherwise>
 
+                    <c:if test="${not sessionScope.account.admin}">
+                        <a href="${pageContext.request.contextPath}/cart">
+                            Giỏ hàng (${empty sessionScope.cartCount ? 0 : sessionScope.cartCount})
+                        </a>
+                        <a href="${pageContext.request.contextPath}/orders">
+                            Lịch sử đặt hàng
+                        </a>
+                    </c:if>
+
                     <c:if test="${sessionScope.account.admin}">
 
                         <a href="${pageContext.request.contextPath}/admin/home">
