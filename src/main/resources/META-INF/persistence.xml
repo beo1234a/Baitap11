@@ -15,6 +15,8 @@
         <class>anhtuan.vn.entity.Video_24133072</class>
         <class>anhtuan.vn.entity.Favorite_24133072</class>
         <class>anhtuan.vn.entity.Share_24133072</class>
+        <class>anhtuan.vn.entity.Order_24133072</class>
+        <class>anhtuan.vn.entity.OrderDetail_24133072</class>
 
         <properties>
 
